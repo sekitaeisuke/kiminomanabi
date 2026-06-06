@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>きみのまなび おてつだい｜不登校から受験合格まで 小中学生専門オンライン学習塾</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#33312e;
+  --ink-soft:#6b6760;
+  --brand:#36a8a0;        /* ティール */
+  --brand-d:#1f7a73;
+  --accent:#ff7a4d;       /* オレンジ（関田さんのカーディガンと合わせた） */
+  --accent-d:#ee5c2c;
+  --sun:#ffc24b;          /* イエロー差し色 */
+  --pink:#ff8fa3;
+  --line-green:#06C755;   /* LINEブランド色 */
+  --cream:#fdf8f0;
+  --cream-d:#f4ead7;
+  --line:#ece3d4;
+  --radius:22px;
+  --shadow:0 14px 36px rgba(60,50,40,.10);
+  --shadow-sm:0 6px 16px rgba(60,50,40,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"Noto Sans JP",sans-serif;color:var(--ink);background:#fff;line-height:1.85;font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,.maru{font-family:"Zen Maru Gothic","Noto Sans JP",sans-serif;line-height:1.5}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px;position:relative}
+.center{text-align:center}
+
+/* wavy underline */
+.uline{position:relative;white-space:nowrap}
+.uline::after{content:"";position:absolute;left:-2%;right:-2%;bottom:-.12em;height:.38em;
+  background:var(--sun);border-radius:999px;z-index:-1;opacity:.85}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-weight:700;
+  padding:13px 26px;border-radius:999px;font-size:15px;box-shadow:0 8px 18px rgba(255,122,77,.4);
+  transition:.15s;white-space:nowrap;font-family:"Zen Maru Gothic"}
+.btn:hover{background:var(--accent-d);transform:translateY(-2px)}
+.btn.sm{padding:9px 18px;font-size:14px}
+.btn.lg{padding:18px 42px;font-size:18px}
+.btn.line{background:var(--line-green);box-shadow:0 8px 18px rgba(6,199,85,.38)}
+.btn.line:hover{background:#05b34c}
+.btn.ghost{background:#fff;color:var(--brand-d);border:2px solid var(--brand);box-shadow:none}
+.btn.white{background:#fff;color:var(--accent-d)}
+.line-ico{width:20px;height:20px;fill:#fff;flex:none}
+
+/* sticker badge (playful, rotated) */
+.sticker{position:absolute;background:#fff;border-radius:16px;padding:10px 16px;box-shadow:var(--shadow);
+  font-family:"Zen Maru Gothic";font-weight:900;font-size:14px;display:flex;align-items:center;gap:6px;z-index:5}
+.sticker .em{font-size:18px}
+.float{animation:float 4s ease-in-out infinite}
+.float.d1{animation-delay:.6s}.float.d2{animation-delay:1.2s}
+@keyframes float{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-9px) rotate(var(--r,0deg))}}
+
+/* blobs */
+.blob{position:absolute;z-index:0;pointer-events:none}
+
+/* ---------- Header ---------- */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hb{display:flex;align-items:center;justify-content:space-between;height:66px}
+.logo{font-family:"Zen Maru Gothic";font-weight:900;font-size:20px;color:var(--brand-d)}
+.logo b{color:var(--accent)}
+.nav{display:flex;gap:20px;align-items:center;font-size:14px;font-weight:500}
+.nav a:hover{color:var(--brand)}
+.nav .tel{font-weight:700;color:var(--brand-d)}
+@media(max-width:880px){.nav .navlink{display:none}}
+
+/* ---------- Hero ---------- */
+.hero{background:radial-gradient(120% 90% at 80% 0%,#d9f3ef 0%,var(--cream) 55%);padding:60px 0 80px;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.02fr .98fr;gap:30px;align-items:center;z-index:2}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;background:#fff;color:var(--brand-d);font-weight:700;font-size:13px;
+  padding:7px 16px;border-radius:999px;box-shadow:var(--shadow-sm);margin-bottom:20px}
+.eyebrow .dot{width:8px;height:8px;border-radius:50%;background:var(--line-green);box-shadow:0 0 0 4px rgba(6,199,85,.18)}
+.hero h1{font-size:42px;font-weight:900;letter-spacing:.01em}
+.hero h1 .hl{color:var(--brand-d)}
+.hero p.lead{margin:20px 0 28px;font-size:17px;color:var(--ink-soft)}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.hero-cta .note{font-size:12.5px;color:var(--ink-soft);width:100%;margin-top:4px}
+.badges{display:flex;gap:10px;margin-top:28px}
+.badge{background:#fff;border-radius:16px;padding:12px 8px;box-shadow:var(--shadow-sm);flex:1;text-align:center}
+.badge .n{font-family:"Zen Maru Gothic";font-weight:900;color:var(--accent-d);font-size:21px;display:block}
+.badge .l{font-size:11.5px;color:var(--ink-soft)}
+
+/* hero visual */
+.hero-visual{position:relative;display:flex;justify-content:center}
+.hero-frame{position:relative;width:340px;max-width:90%;background:#fff;border-radius:50% 50% 46% 46%/46%;
+  padding:18px;box-shadow:var(--shadow);border:6px solid #fff;z-index:2}
+.hero-frame .inner{background:linear-gradient(160deg,#eafaf7,#fff);border-radius:50% 50% 46% 46%/46%;overflow:hidden}
+.hero-frame img{width:100%}
+.spark{position:absolute;z-index:6}
+
+/* ---------- Section base ---------- */
+section{padding:80px 0;position:relative}
+.kicker{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--brand);font-weight:700;font-size:13px;letter-spacing:.12em;margin-bottom:10px}
+.kicker::before,.kicker::after{content:"";width:26px;height:2px;background:var(--brand);border-radius:2px;opacity:.5}
+.h2{font-size:31px;font-weight:900;text-align:center;margin-bottom:10px}
+.sub{text-align:center;color:var(--ink-soft);margin-bottom:46px}
+.bg-cream{background:var(--cream)}
+
+/* wave divider */
+.wave{display:block;width:100%;height:60px}
+
+/* ---------- Problems ---------- */
+.prob-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.prob-illust{position:relative;text-align:center}
+.prob-illust img{width:230px;margin:0 auto;filter:drop-shadow(0 10px 20px rgba(54,168,160,.18))}
+.prob-list{display:grid;gap:14px}
+.prob{display:flex;gap:14px;align-items:center;background:#fff;border-radius:16px;padding:16px 20px;box-shadow:var(--shadow-sm);border:1px solid var(--line)}
+.prob .c{flex:none;width:30px;height:30px;border-radius:50%;background:#ffe9e1;color:var(--accent-d);display:grid;place-items:center;font-weight:900}
+.prob p{font-size:15px}
+.prob-turn{text-align:center;margin-top:34px;font-family:"Zen Maru Gothic";font-weight:900;font-size:22px;color:var(--brand-d)}
+.prob-turn .em{font-size:26px}
+
+/* ---------- Reasons ---------- */
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:#fff;border-radius:var(--radius);padding:30px 26px;border:1px solid var(--line);box-shadow:var(--shadow-sm);position:relative;transition:.18s}
+.card:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.card .ico{width:64px;height:64px;border-radius:20px;display:grid;place-items:center;font-size:32px;margin-bottom:14px}
+.card:nth-child(1) .ico{background:#e3f4f2}.card:nth-child(2) .ico{background:#fff0e6}.card:nth-child(3) .ico{background:#fff5dd}
+.card h3{font-size:19px;margin-bottom:10px;color:var(--brand-d)}
+.card p{font-size:14.5px;color:var(--ink-soft)}
+.card .tag{position:absolute;top:-12px;right:18px;background:var(--sun);color:#6b4a00;font-family:"Zen Maru Gothic";font-weight:900;font-size:12px;padding:5px 12px;border-radius:999px;transform:rotate(4deg)}
+
+/* ---------- Price ---------- */
+.price-card{max-width:640px;margin:0 auto;background:#fff;border-radius:26px;box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--line);position:relative;z-index:2}
+.price-top{background:linear-gradient(100deg,var(--brand),var(--brand-d));color:#fff;text-align:center;padding:22px}
+.price-top .free{font-family:"Zen Maru Gothic";font-weight:900;font-size:24px}
+.price-body{padding:34px;text-align:center}
+.price-row{display:flex;justify-content:center;align-items:baseline;gap:8px;flex-wrap:wrap}
+.price-row .yen{font-family:"Zen Maru Gothic";font-weight:900;font-size:58px;color:var(--ink);line-height:1}
+.price-row .unit{font-size:16px;color:var(--ink-soft)}
+.price-meta{display:flex;gap:12px;justify-content:center;margin:22px 0 6px;flex-wrap:wrap}
+.pill{background:var(--cream-d);border-radius:999px;padding:8px 16px;font-size:14px;font-weight:700;color:var(--brand-d)}
+.price-note{font-size:13px;color:var(--ink-soft);margin-top:18px}
+
+/* ---------- Steps ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.step{background:#fff;border-radius:var(--radius);padding:30px 24px;border:1px solid var(--line);box-shadow:var(--shadow-sm);position:relative}
+.step .num{font-family:"Zen Maru Gothic";font-weight:900;color:#fff;background:var(--accent);width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:20px;margin-bottom:14px;transform:rotate(-4deg)}
+.step h3{font-size:18px;margin-bottom:8px}
+.step p{font-size:14px;color:var(--ink-soft)}
+
+/* ---------- Voices ---------- */
+.voices{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.voice{background:#fff;border-radius:var(--radius);padding:26px;border:1px solid var(--line);box-shadow:var(--shadow-sm);position:relative}
+.voice::before{content:"❝";position:absolute;top:6px;left:18px;font-size:46px;color:var(--cream-d);font-family:serif}
+.voice .stars{color:#ffb400;font-size:15px;margin-bottom:8px;letter-spacing:2px;position:relative}
+.voice p{font-size:14.5px;position:relative}
+.voice .who{margin-top:14px;font-size:13px;color:var(--ink-soft);font-weight:700}
+
+/* ---------- Story ---------- */
+.story{max-width:780px;margin:0 auto;background:#fff;border-radius:26px;padding:40px 36px;border:1px solid var(--line);box-shadow:var(--shadow-sm);position:relative}
+.story .ribbon{position:absolute;top:-16px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-family:"Zen Maru Gothic";font-weight:900;font-size:14px;padding:7px 22px;border-radius:999px;box-shadow:var(--shadow-sm)}
+.story h3{font-size:22px;color:var(--brand-d);margin:8px 0 16px;text-align:center}
+.story p{font-size:15.5px;margin-bottom:14px}
+.story .q{font-weight:700;color:var(--accent-d)}
+
+/* ---------- 関田 ---------- */
+.founder{display:grid;grid-template-columns:300px 1fr;gap:44px;align-items:center;max-width:900px;margin:0 auto}
+.founder-photo{position:relative}
+.founder-photo .ph{border-radius:26px;overflow:hidden;box-shadow:var(--shadow);border:6px solid #fff}
+.founder-photo .ph img{width:100%;display:block}
+.founder h3{font-size:15px;color:var(--brand);font-weight:700;margin-bottom:2px}
+.founder h2{font-size:28px;font-weight:900;text-align:left;margin-bottom:16px}
+.founder h2 small{font-size:14px;color:var(--ink-soft);font-weight:500;margin-left:8px}
+.founder p{color:var(--ink-soft);font-size:15px;margin-bottom:16px}
+.creds{display:flex;flex-wrap:wrap;gap:9px}
+.creds span{background:#fff;border:1px solid var(--line);border-radius:10px;padding:7px 13px;font-size:12.5px;color:var(--brand-d);font-weight:700;box-shadow:var(--shadow-sm)}
+
+/* ---------- LINE band ---------- */
+.line-band{background:linear-gradient(120deg,#06C755,#04a847);color:#fff;border-radius:30px;max-width:980px;margin:0 auto;padding:46px 40px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;position:relative;overflow:hidden}
+.line-band .lbtxt h2{font-size:28px;font-weight:900;text-align:left;margin-bottom:10px}
+.line-band .lbtxt p{font-size:15px;opacity:.95}
+.line-band .qr{background:#fff;border-radius:18px;padding:16px;text-align:center;color:var(--ink)}
+.line-band .qr .box{width:120px;height:120px;border-radius:12px;background:repeating-conic-gradient(#222 0% 25%,#fff 0% 50%) 0/22px 22px;margin:0 auto 8px}
+.line-band .qr small{font-size:11px;color:var(--ink-soft);font-weight:700}
+.line-band .big-line{position:absolute;right:-30px;bottom:-40px;font-size:200px;opacity:.08}
+
+/* ---------- FAQ ---------- */
+.faq{max-width:760px;margin:0 auto}
+.qa{background:#fff;border:1px solid var(--line);border-radius:16px;margin-bottom:12px;overflow:hidden;box-shadow:var(--shadow-sm)}
+.qa summary{list-style:none;cursor:pointer;padding:18px 22px;font-weight:700;font-size:15.5px;display:flex;justify-content:space-between;gap:14px;align-items:center}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary .q{display:flex;gap:10px}
+.qa summary .q b{color:var(--accent)}
+.qa summary .ic{flex:none;width:26px;height:26px;border-radius:50%;background:var(--cream-d);display:grid;place-items:center;color:var(--brand-d);font-weight:900;transition:.2s}
+.qa[open] summary .ic{transform:rotate(45deg);background:var(--brand);color:#fff}
+.qa .a{padding:0 22px 20px;color:var(--ink-soft);font-size:14.5px}
+
+/* ---------- CTA band ---------- */
+.cta-band{background:linear-gradient(135deg,#ff9a6b,var(--accent-d));color:#fff;text-align:center;padding:70px 0;position:relative;overflow:hidden}
+.cta-band h2{font-size:32px;font-weight:900;margin-bottom:12px}
+.cta-band p{margin-bottom:28px;font-size:16px;opacity:.96}
+.cta-band .twobtn{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.cta-band .tel{margin-top:22px;font-size:14px;opacity:.96}
+.cta-band .tel b{font-family:"Zen Maru Gothic";font-size:24px;display:block;margin-top:4px}
+
+/* ---------- Contact ---------- */
+form.demo{background:#fff;border:1px solid var(--line);border-radius:22px;padding:32px;box-shadow:var(--shadow-sm)}
+form.demo input,form.demo select{padding:13px 14px;border:1px solid var(--line);border-radius:12px;font-size:15px;font-family:inherit;width:100%}
+form.demo select{color:#555}
+
+/* ---------- Footer ---------- */
+footer{background:#2c2a27;color:#cfcabf;padding:48px 0 28px;font-size:13px}
+.fcols{display:flex;justify-content:space-between;flex-wrap:wrap;gap:24px;margin-bottom:24px}
+.fcols a{color:#cfcabf}.fcols a:hover{color:#fff}
+.fcol h4{color:#fff;font-size:14px;margin-bottom:10px}
+.fcol div{margin-bottom:6px}
+.copy{border-top:1px solid #44413c;padding-top:18px;color:#999;text-align:center}
+
+/* mobile sticky */
+.mobile-cta{display:none}
+@media(max-width:880px){
+  .hero .wrap{grid-template-columns:1fr;gap:30px;text-align:center}
+  .hero h1{font-size:31px}
+  .badges{max-width:420px;margin:28px auto 0}
+  .hero-cta{justify-content:center}
+  .cards3,.steps,.voices{grid-template-columns:1fr}
+  .prob-wrap{grid-template-columns:1fr;gap:24px}
+  .founder{grid-template-columns:1fr;text-align:center;gap:24px}
+  .founder h2,.founder h3{text-align:center}.creds{justify-content:center}
+  .founder-photo{max-width:280px;margin:0 auto}
+  .line-band{grid-template-columns:1fr;text-align:center;padding:34px 24px}
+  .line-band .lbtxt h2{text-align:center}.line-band .qr{justify-self:center}
+  .h2,.cta-band h2,.founder h2{font-size:25px}
+  .mobile-cta{display:flex;gap:8px;position:fixed;bottom:0;left:0;right:0;background:#fff;box-shadow:0 -4px 20px rgba(0,0,0,.1);padding:9px 12px;z-index:60}
+  .mobile-cta .btn{flex:1;justify-content:center;padding:13px 8px;font-size:14px}
+  body{padding-bottom:74px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="wrap hb">
+    <div class="logo">きみのまなび<b>.</b>おてつだい</div>
+    <nav class="nav">
+      <a class="navlink" href="#reasons">選ばれる理由</a>
+      <a class="navlink" href="#price">料金</a>
+      <a class="navlink" href="#voices">利用者の声</a>
+      <a class="navlink" href="#faq">よくある質問</a>
+      <a class="tel navlink" href="tel:0120916374">0120-91-6374</a>
+      <a class="btn line sm" href="https://lin.ee/XR2idcG" target="_blank" rel="noopener"><svg class="line-ico" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 5.64 2 10.12c0 4.01 3.55 7.37 8.35 8.01.32.07.77.21.88.49.1.25.07.64.03.9l-.14.85c-.04.25-.2.99.87.54 1.07-.45 5.75-3.39 7.85-5.8C21.2 13.5 22 11.93 22 10.12 22 5.64 17.52 2 12 2z"/></svg>LINEで相談</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- playful blobs -->
+  <svg class="blob" style="top:-40px;left:-60px;width:260px" viewBox="0 0 200 200"><path fill="#ffe2b0" d="M44,-58C57,-49,67,-35,71,-19C75,-3,73,15,65,30C57,45,43,57,27,63C11,69,-7,69,-24,63C-41,57,-57,45,-65,29C-73,13,-73,-7,-66,-24C-59,-41,-45,-55,-29,-63C-13,-71,5,-73,21,-70C37,-67,31,-67,44,-58Z" transform="translate(100 100)"/></svg>
+  <svg class="blob" style="bottom:-50px;right:-40px;width:220px" viewBox="0 0 200 200"><path fill="#cdeee9" d="M40,-54C53,-45,65,-34,70,-20C75,-6,73,11,65,25C57,39,44,50,29,57C14,64,-3,67,-19,62C-35,57,-50,44,-59,28C-68,12,-71,-7,-65,-23C-59,-39,-44,-52,-28,-60C-12,-68,6,-71,22,-68C38,-65,27,-63,40,-54Z" transform="translate(100 100)"/></svg>
+
+  <div class="wrap">
+    <div>
+      <span class="eyebrow"><span class="dot"></span>小中学生専門・完全オンライン</span>
+      <h1>「うちの子に合う勉強」が、<br><span class="hl uline">家にいながら</span>見つかる。</h1>
+      <p class="lead">不登校でも、勉強が苦手でも大丈夫。<br>プロ講師がひとりに1つの学習プランをつくり、合格まで伴走します。</p>
+      <div class="hero-cta">
+        <a class="btn lg" href="#contact">1か月 無料体験を申し込む</a>
+        <a class="btn line lg" href="https://lin.ee/XR2idcG" target="_blank" rel="noopener"><svg class="line-ico" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 5.64 2 10.12c0 4.01 3.55 7.37 8.35 8.01.32.07.77.21.88.49.1.25.07.64.03.9l-.14.85c-.04.25-.2.99.87.54 1.07-.45 5.75-3.39 7.85-5.8C21.2 13.5 22 11.93 22 10.12 22 5.64 17.52 2 12 2z"/></svg>LINEで気軽に相談</a>
+        <span class="note">入会金0円／しつこい勧誘はしません。質問だけでもOKです。</span>
+      </div>
+      <div class="badges">
+        <div class="badge"><span class="n">0円</span><span class="l">入会金</span></div>
+        <div class="badge"><span class="n">19,800円</span><span class="l">月額（税別）</span></div>
+        <div class="badge"><span class="n">1か月</span><span class="l">無料体験</span></div>
+        <div class="badge"><span class="n">4,000+</span><span class="l">支援家庭</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-frame float">
+        <div class="inner"><img src="assets/illust-point.webp" alt="笑顔のお母さん"></div>
+      </div>
+      <!-- floating stickers -->
+      <div class="sticker float" style="top:6%;left:-6%;--r:-7deg"><span class="em">🏠</span>おうちが教室に</div>
+      <div class="sticker float d1" style="top:40%;right:-10%;--r:6deg"><span class="em">🙌</span>30分に1回 声かけ</div>
+      <div class="sticker float d2" style="bottom:2%;left:-2%;--r:5deg"><span class="em">✏️</span>その子だけのプラン</div>
+      <!-- sparkles -->
+      <svg class="spark float" style="top:-4%;right:14%;width:34px" viewBox="0 0 24 24"><path fill="#ffc24b" d="M12 0l2.4 7.6L22 10l-7.6 2.4L12 20l-2.4-7.6L2 10l7.6-2.4z"/></svg>
+      <svg class="spark float d2" style="bottom:14%;right:6%;width:22px" viewBox="0 0 24 24"><path fill="#ff8fa3" d="M12 0l2.4 7.6L22 10l-7.6 2.4L12 20l-2.4-7.6L2 10l7.6-2.4z"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMS -->
+<section class="bg-cream">
+  <div class="wrap">
+    <div class="kicker">こんなお悩み、ありませんか？</div>
+    <h2 class="h2">その気持ち、私たちが受けとめます</h2>
+    <p class="sub"></p>
+    <div class="prob-wrap">
+      <div class="prob-illust">
+        <img src="assets/illust-worry.webp" alt="悩むお母さん">
+        <svg class="spark" style="top:0;right:18%;width:26px" viewBox="0 0 24 24"><path fill="#ffc24b" d="M12 0l2.4 7.6L22 10l-7.6 2.4L12 20l-2.4-7.6L2 10l7.6-2.4z"/></svg>
+      </div>
+      <div class="prob-list">
+        <div class="prob"><span class="c">!</span><p>「勉強しなさい！」と叱るのに、もう疲れた</p></div>
+        <div class="prob"><span class="c">!</span><p>不登校で、家での勉強がなかなか進まない</p></div>
+        <div class="prob"><span class="c">!</span><p>うちの子に合う勉強法が、よくわからない</p></div>
+        <div class="prob"><span class="c">!</span><p>塾に通わせても、成績が上がらない</p></div>
+        <div class="prob"><span class="c">!</span><p>塾の費用が高くて、続けるのがしんどい</p></div>
+      </div>
+    </div>
+    <p class="prob-turn"><span class="em">☝️</span> その全部に、ひとつずつ向き合います。</p>
+  </div>
+</section>
+
+<!-- REASONS -->
+<section id="reasons">
+  <div class="wrap">
+    <div class="kicker">WHY US</div>
+    <h2 class="h2">ほかのオンライン塾と、<span class="uline">ここが違う</span></h2>
+    <p class="sub">「映像を見るだけ」では続きません。私たちは“人”が毎日寄り添います。</p>
+    <div class="cards3">
+      <div class="card">
+        <span class="tag">いちばんの強み</span>
+        <div class="ico">🧩</div>
+        <h3>ひとりに1つの<br>学習プラン</h3>
+        <p>つまずいた所まで戻って学べるオーダーメイド設計。だから「わからない」が積み上がりません。</p>
+      </div>
+      <div class="card">
+        <div class="ico">🙌</div>
+        <h3>30分に1回、<br>声かけ</h3>
+        <p>講師が常駐する教室に“通う”形。放置しないから、家でも自然と集中が続きます。</p>
+      </div>
+      <div class="card">
+        <div class="ico">📩</div>
+        <h3>毎日の様子を<br>ご家庭へ報告</h3>
+        <p>独自ツール「つなぐ」で進み具合をお知らせ。お子様の変化が見えて、保護者さまも安心です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE -->
+<section id="price" class="bg-cream">
+  <div class="wrap">
+    <svg class="blob" style="top:30px;left:-30px;width:150px" viewBox="0 0 200 200"><path fill="#ffe2b0" d="M44,-58C57,-49,67,-35,71,-19C75,-3,73,15,65,30C57,45,43,57,27,63C11,69,-7,69,-24,63C-41,57,-57,45,-65,29C-73,13,-73,-7,-66,-24C-59,-41,-45,-55,-29,-63C-13,-71,5,-73,21,-70C37,-67,31,-67,44,-58Z" transform="translate(100 100)"/></svg>
+    <div class="kicker">PRICE</div>
+    <h2 class="h2">料金は、わかりやすい<span class="uline">定額制</span></h2>
+    <p class="sub">「高い塾」をやめて、続けられる価格に。オンライン専門だから実現できました。</p>
+    <div class="price-card">
+      <div class="price-top"><span class="free">🎁 まずは1か月、無料体験</span></div>
+      <div class="price-body">
+        <div class="price-row"><span class="yen">19,800</span><span class="unit">円 / 月（税別）</span></div>
+        <div class="price-meta">
+          <span class="pill">入会金 0円</span>
+          <span class="pill">5教科対応</span>
+          <span class="pill">月〜金 16-22時</span>
+        </div>
+        <p class="price-note">＋ ご希望の方には1対1の個別指導（60分・月4回）月額8,800円（税込）もご用意。<br>無料体験のあと、お子様と保護者さま、両方が納得されてからのお申し込みでOKです。</p>
+        <div style="margin-top:24px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+          <a class="btn lg" href="#contact">無料体験を申し込む</a>
+          <a class="btn line lg" href="https://lin.ee/XR2idcG" target="_blank" rel="noopener"><svg class="line-ico" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 5.64 2 10.12c0 4.01 3.55 7.37 8.35 8.01.32.07.77.21.88.49.1.25.07.64.03.9l-.14.85c-.04.25-.2.99.87.54 1.07-.45 5.75-3.39 7.85-5.8C21.2 13.5 22 11.93 22 10.12 22 5.64 17.52 2 12 2z"/></svg>LINEで質問</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section>
+  <div class="wrap">
+    <div class="kicker">FLOW</div>
+    <h2 class="h2">はじめかたは、<span class="uline">かんたん3ステップ</span></h2>
+    <p class="sub">むずかしい準備はいりません。ネット環境とやる気だけでスタートできます。</p>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3>ヒアリング</h3><p>「集中が続かない」「苦手が多い」――お子様とご家庭のお困りごとを、まずじっくり伺います。</p></div>
+      <div class="step"><div class="num">2</div><h3>目標を設定</h3><p>プロ講師が現状を分析し、改善の方針と目標を決定。お子様だけのカリキュラムを組み立てます。</p></div>
+      <div class="step"><div class="num">3</div><h3>毎日の学習</h3><p>オンライン教室で学習スタート。30分に1回の声かけで、わからないをその場で解決します。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- VOICES -->
+<section id="voices" class="bg-cream">
+  <div class="wrap">
+    <div class="kicker">VOICE</div>
+    <h2 class="h2">「子どもが変わった」の声</h2>
+    <p class="sub">保護者さまから、たくさんの声をいただいています。</p>
+    <div class="voices">
+      <div class="voice"><div class="stars">★★★★★</div><p>家で机に向かう時間が増え、次のテストの目標を立てて毎日がんばるように。報告書で様子が分かるので本当に助かっています。</p><div class="who">― 中学生のお母さま</div></div>
+      <div class="voice"><div class="stars">★★★★★</div><p>生活習慣まで見てくださり、期限までに終わらせる習慣がついてきました。丁寧なご指導で第一志望の中学に合格できました！</p><div class="who">― 小学生のお母さま</div></div>
+      <div class="voice"><div class="stars">★★★★★</div><p>口数の少なかった娘が、学習のことを自分から楽しそうに話すように。合計点も50点以上アップし、自信がついたようです。</p><div class="who">― 中学生のお母さま</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section>
+  <div class="wrap">
+    <div class="story">
+      <span class="ribbon">🎓 合格ストーリー</span>
+      <h3>不登校から、志望校合格へ ― Sくんの物語</h3>
+      <p>朝が苦手で、なかなか登校できなかった中3のSくん。受験を控え、お母さまも深く悩んでいました。</p>
+      <p>ある日の授業中の雑談で、Sくんが<span class="q">「バンドを組みたい」</span>と話してくれた――。それが転機でした。音楽の話から将来の話へ、毎日の対話を重ねるうちに、自宅での学習量が自然と増えていきました。</p>
+      <p>やがて夕方だけ登校するようになり、自分のペースで入試に向き合い、<span class="q">志望校の合格を勝ち取りました。</span></p>
+      <p style="margin-bottom:0;font-size:14px;color:var(--ink-soft)">※お子様一人ひとりに、その子だけの“きっかけ”があります。それを一緒に探すのが、私たちの仕事です。</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER (関田) -->
+<section id="founder" class="bg-cream">
+  <div class="wrap">
+    <div class="kicker">代表メッセージ</div>
+    <div class="founder">
+      <div class="founder-photo">
+        <div class="ph float"><img src="assets/sekita.webp" alt="代表 関田英介"></div>
+        <div class="sticker float d1" style="bottom:-14px;right:-14px;--r:6deg"><span class="em">🐟</span>趣味は魚をさばくこと</div>
+        <svg class="spark float" style="top:-12px;left:-10px;width:28px" viewBox="0 0 24 24"><path fill="#ffc24b" d="M12 0l2.4 7.6L22 10l-7.6 2.4L12 20l-2.4-7.6L2 10l7.6-2.4z"/></svg>
+      </div>
+      <div>
+        <h3>代表</h3>
+        <h2>関田 英介<small>せきた えいすけ</small></h2>
+        <p>子どもの心理と学力を読みながら、その子に最善の学習習慣をつくるのが私の仕事です。学習指導を通じて保護者さまと信頼関係を築き、ご家庭ごと支えること――それが「きみのまなび おてつだい」の願いです。まずは気軽に、LINEでお話しさせてください。</p>
+        <div class="creds">
+          <span>4,000世帯以上を支援</span>
+          <span>大手塾 優秀教室長</span>
+          <span>ICT教材すらら 開発</span>
+          <span>連絡帳「つなぐ」開発者</span>
+          <span>上級心理カウンセラー</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LINE BAND -->
+<section>
+  <div class="wrap">
+    <div class="line-band">
+      <span class="big-line">💬</span>
+      <div class="lbtxt">
+        <h2>まずはLINEで、ひとこと相談</h2>
+        <p>「こんなこと聞いていいのかな？」も大歓迎。<br>お子様の様子を少し教えていただくだけで、私たちが一緒に考えます。<br><b>友だち追加で、無料体験のご案内も届きます。</b></p>
+        <div style="margin-top:20px"><a class="btn white lg" href="https://lin.ee/XR2idcG" target="_blank" rel="noopener"><svg class="line-ico" viewBox="0 0 24 24" style="fill:#06C755"><path d="M12 2C6.48 2 2 5.64 2 10.12c0 4.01 3.55 7.37 8.35 8.01.32.07.77.21.88.49.1.25.07.64.03.9l-.14.85c-.04.25-.2.99.87.54 1.07-.45 5.75-3.39 7.85-5.8C21.2 13.5 22 11.93 22 10.12 22 5.64 17.52 2 12 2z"/></svg>LINEで友だち追加する</a></div>
+      </div>
+      <a class="qr" href="https://lin.ee/XR2idcG" target="_blank" rel="noopener">
+        <img class="box" src="assets/line_qr.png" alt="地域教育工房 公式LINE QRコード">
+        <small>QRコードを<br>読み取ってね</small>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="kicker">FAQ</div>
+    <h2 class="h2">よくあるご質問</h2>
+    <p class="sub"></p>
+    <div class="faq">
+      <details class="qa" open><summary><span class="q"><b>Q.</b> 学校に通えていません。遅れがあってもついていけますか？</span><span class="ic">＋</span></summary><div class="a">はい。お子様の理解度まで戻ってスタートするオーダーメイド設計なので、遅れがあっても無理なく進められます。不登校のお子様も多く在籍しています。</div></details>
+      <details class="qa"><summary><span class="q"><b>Q.</b> 定額料金のほかに、追加でかかる費用はありますか？</span><span class="ic">＋</span></summary><div class="a">通常授業は月額19,800円（税別）の定額制で、入会金もかかりません。1対1の個別指導をご希望の場合のみ、別途オプション料金（月8,800円）が発生します。</div></details>
+      <details class="qa"><summary><span class="q"><b>Q.</b> 無料体験のあと、入会を見合わせても大丈夫ですか？</span><span class="ic">＋</span></summary><div class="a">もちろん大丈夫です。お子様と保護者さま、どちらも納得されたうえでお申し込みください。無理な勧誘はいたしません。</div></details>
+      <details class="qa"><summary><span class="q"><b>Q.</b> パソコンが苦手です。スマホやタブレットでも受講できますか？</span><span class="ic">＋</span></summary><div class="a">ネット環境があれば、スマホ・タブレットでも受講可能です。接続のご案内もサポートしますのでご安心ください。</div></details>
+      <details class="qa"><summary><span class="q"><b>Q.</b> 苦手な科目だけ受講することはできますか？</span><span class="ic">＋</span></summary><div class="a">はい、5教科の中からお子様に必要な科目を中心に学習できます。まずはヒアリングで最適な進め方をご提案します。</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <svg class="blob" style="top:-30px;left:8%;width:120px;opacity:.4" viewBox="0 0 200 200"><path fill="#fff" d="M44,-58C57,-49,67,-35,71,-19C75,-3,73,15,65,30C57,45,43,57,27,63C11,69,-7,69,-24,63C-41,57,-57,45,-65,29C-73,13,-73,-7,-66,-24C-59,-41,-45,-55,-29,-63C-13,-71,5,-73,21,-70C37,-67,31,-67,44,-58Z" transform="translate(100 100)"/></svg>
+  <div class="wrap">
+    <h2>まずは1か月、無料でお試しください</h2>
+    <p>入会金0円・いつでも退会OK。お子様に合うか、じっくり確かめてからで大丈夫です。</p>
+    <div class="twobtn">
+      <a class="btn white lg" href="#contact">無料体験を申し込む</a>
+      <a class="btn line lg" href="https://lin.ee/XR2idcG" target="_blank" rel="noopener"><svg class="line-ico" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 5.64 2 10.12c0 4.01 3.55 7.37 8.35 8.01.32.07.77.21.88.49.1.25.07.64.03.9l-.14.85c-.04.25-.2.99.87.54 1.07-.45 5.75-3.39 7.85-5.8C21.2 13.5 22 11.93 22 10.12 22 5.64 17.52 2 12 2z"/></svg>LINEで相談する</a>
+    </div>
+    <div class="tel">お電話でのご相談（10:00〜22:00）<b>0120-91-6374</b></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="bg-cream">
+  <div class="wrap" style="max-width:640px">
+    <div class="kicker">CONTACT</div>
+    <h2 class="h2">無料体験のお申し込み</h2>
+    <p class="sub">30秒で入力完了。担当者より折り返しご連絡します。</p>
+    <form class="demo" onsubmit="alert('※これはデザイン見本です。STUDIOのフォームに置き換えてください。');return false">
+      <p style="font-size:14px;color:var(--ink-soft);margin-bottom:18px">入力項目は最小限に。迷わせないほど、申込率は上がります。</p>
+      <div style="display:grid;gap:12px">
+        <input placeholder="保護者さまのお名前">
+        <select><option>お子様の学年を選択</option><option>小学1〜3年生</option><option>小学4〜6年生</option><option>中学生</option></select>
+        <input placeholder="メールアドレス">
+        <input placeholder="お電話番号">
+      </div>
+      <button class="btn lg" style="width:100%;margin-top:18px;border:none;cursor:pointer;justify-content:center">この内容で無料体験を申し込む</button>
+      <p style="text-align:center;margin-top:14px;font-size:13px;color:var(--ink-soft)">フォームが面倒な方は <a href="https://lin.ee/XR2idcG" target="_blank" rel="noopener" style="color:var(--line-green);font-weight:700">LINEで相談</a> もどうぞ。</p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div class="fcol">
+        <h4>きみのまなび おてつだい</h4>
+        <div>不登校から受験合格まで</div>
+        <div>小中学生専門オンライン学習塾</div>
+        <div style="margin-top:10px;color:#fff;font-weight:700">0120-91-6374（10:00〜22:00）</div>
+      </div>
+      <div class="fcol">
+        <h4>メニュー</h4>
+        <div><a href="#reasons">選ばれる理由</a></div>
+        <div><a href="#price">料金</a></div>
+        <div><a href="#voices">利用者の声</a></div>
+        <div><a href="#faq">よくある質問</a></div>
+      </div>
+      <div class="fcol">
+        <h4>つながる</h4>
+        <div><a href="https://lin.ee/XR2idcG" target="_blank" rel="noopener">LINE公式アカウント</a></div>
+        <div><a href="#">Instagram</a></div>
+        <div><a href="#">運営会社</a></div>
+        <div><a href="#">プライバシーポリシー</a></div>
+      </div>
+    </div>
+    <div class="copy">© 2026 きみのまなび おてつだい all rights reserved.</div>
+  </div>
+</footer>
+
+<!-- MOBILE STICKY -->
+<div class="mobile-cta">
+  <a class="btn" href="#contact">無料体験</a>
+  <a class="btn line" href="https://lin.ee/XR2idcG" target="_blank" rel="noopener"><svg class="line-ico" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 5.64 2 10.12c0 4.01 3.55 7.37 8.35 8.01.32.07.77.21.88.49.1.25.07.64.03.9l-.14.85c-.04.25-.2.99.87.54 1.07-.45 5.75-3.39 7.85-5.8C21.2 13.5 22 11.93 22 10.12 22 5.64 17.52 2 12 2z"/></svg>LINE相談</a>
+</div>
+
+</body>
+</html>
