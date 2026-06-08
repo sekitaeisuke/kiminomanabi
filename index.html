@@ -216,6 +216,40 @@ footer{background:#2c2a27;color:#cfcabf;padding:48px 0 28px;font-size:13px}
 .fcol div{margin-bottom:6px}
 .copy{border-top:1px solid #44413c;padding-top:18px;color:#999;text-align:center}
 
+/* ---------- LINE float (desktop) ---------- */
+.line-float{position:fixed;right:22px;bottom:26px;z-index:55;display:flex;flex-direction:column;align-items:center;gap:7px}
+.line-float a{position:relative;display:grid;place-items:center;width:88px;height:88px;border-radius:50%;background:var(--line-green);
+  box-shadow:0 14px 30px rgba(6,199,85,.55);animation:line-bob 2.6s ease-in-out infinite}
+.line-float a::before{content:"";position:absolute;inset:0;border-radius:50%;background:var(--line-green);opacity:.45;animation:line-ring 2.2s ease-out infinite;z-index:-1}
+.line-float a:hover{background:#05b34c}
+.line-float a svg{width:48px;height:48px;fill:#fff}
+.line-float .lbl{background:#fff;color:var(--line-green);font-weight:900;font-size:13.5px;padding:5px 15px;border-radius:999px;
+  box-shadow:var(--shadow);font-family:"Zen Maru Gothic";white-space:nowrap}
+@keyframes line-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes line-ring{0%{transform:scale(1);opacity:.45}100%{transform:scale(1.7);opacity:0}}
+@media(max-width:880px){.line-float{display:none}}
+
+/* ---------- Instagram feed ---------- */
+.btn.ig{background:linear-gradient(45deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);box-shadow:0 8px 18px rgba(214,41,118,.38)}
+.btn.ig:hover{filter:brightness(1.06);transform:translateY(-2px)}
+.ig-handle{display:inline-flex;align-items:center;gap:8px;font-family:"Zen Maru Gothic";font-weight:900;font-size:18px;
+  color:#d62976;margin-bottom:6px}
+.ig-handle svg{width:24px;height:24px}
+.ig-marquee{overflow:hidden;padding:8px 0 4px;
+  -webkit-mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);
+  mask:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.ig-track{display:flex;gap:18px;width:max-content;animation:ig-scroll 48s linear infinite}
+.ig-marquee:hover .ig-track{animation-play-state:paused}
+@keyframes ig-scroll{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 9px))}}
+.ig-card{flex:none;width:230px;height:230px;border-radius:22px;overflow:hidden;position:relative;
+  box-shadow:var(--shadow-sm);border:4px solid #fff;display:flex;flex-direction:column;justify-content:flex-end;
+  padding:16px;color:#fff;transition:.18s}
+.ig-card:hover{transform:translateY(-6px) scale(1.02);box-shadow:var(--shadow)}
+.ig-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 35%,rgba(0,0,0,.5))}
+.ig-card .emoji{position:absolute;top:14px;left:16px;font-size:42px;z-index:1;filter:drop-shadow(0 2px 6px rgba(0,0,0,.25))}
+.ig-card .ig-ico{position:absolute;top:15px;right:15px;width:22px;height:22px;z-index:1;fill:#fff;opacity:.92}
+.ig-card .cap{position:relative;z-index:1;font-family:"Zen Maru Gothic";font-weight:700;font-size:14.5px;line-height:1.45}
+
 /* mobile sticky */
 .mobile-cta{display:none}
 @media(max-width:880px){
@@ -455,6 +489,43 @@ footer{background:#2c2a27;color:#cfcabf;padding:48px 0 28px;font-size:13px}
   </div>
 </section>
 
+<!-- INSTAGRAM -->
+<section id="instagram" class="bg-cream">
+  <div class="wrap center">
+    <div class="kicker">INSTAGRAM</div>
+    <div class="ig-handle">
+      <svg viewBox="0 0 24 24"><defs><linearGradient id="iggrad" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#feda75"/><stop offset=".4" stop-color="#fa7e1e"/><stop offset=".7" stop-color="#d62976"/><stop offset="1" stop-color="#4f5bd5"/></linearGradient></defs><path fill="url(#iggrad)" d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.42a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.17-.42-.37-1.06-.42-2.23C2.2 15.58 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.42 2.2 8.8 2.2 12 2.2zm0 3.05A6.75 6.75 0 1 0 18.75 12 6.75 6.75 0 0 0 12 5.25zm0 11.13A4.38 4.38 0 1 1 16.38 12 4.38 4.38 0 0 1 12 16.38zm6.97-11.4a1.58 1.58 0 1 0 1.58 1.57 1.58 1.58 0 0 0-1.58-1.57z"/></svg>
+      @kiminomanabi_otetsudai
+    </div>
+    <h2 class="h2">毎日の様子を<span class="uline">インスタ</span>で発信中</h2>
+    <p class="sub">教室のリアルな空気感を、写真と動画でお届けしています。</p>
+  </div>
+  <div class="ig-marquee">
+    <div class="ig-track">
+      <!-- set 1 -->
+      <a class="ig-card" href="https://www.instagram.com/kiminomanabi_otetsudai" target="_blank" rel="noopener" style="background:linear-gradient(135deg,#36a8a0,#1f7a73)"><span class="emoji">🌱</span><svg class="ig-ico" viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.42a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.17-.42-.37-1.06-.42-2.23C2.2 15.58 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.42 2.2 8.8 2.2 12 2.2zm0 3.05A6.75 6.75 0 1 0 18.75 12 6.75 6.75 0 0 0 12 5.25zm0 11.13A4.38 4.38 0 1 1 16.38 12 4.38 4.38 0 0 1 12 16.38zm6.97-11.4a1.58 1.58 0 1 0 1.58 1.57 1.58 1.58 0 0 0-1.58-1.57z"/></svg><span class="cap">今日のがんばり、<br>「つなぐ」で報告📩</span></a>
+      <a class="ig-card" href="https://www.instagram.com/kiminomanabi_otetsudai" target="_blank" rel="noopener" style="background:linear-gradient(135deg,#ff9a6b,#ee5c2c)"><span class="emoji">✏️</span><svg class="ig-ico" viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.42a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.17-.42-.37-1.06-.42-2.23C2.2 15.58 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.42 2.2 8.8 2.2 12 2.2zm0 3.05A6.75 6.75 0 1 0 18.75 12 6.75 6.75 0 0 0 12 5.25zm0 11.13A4.38 4.38 0 1 1 16.38 12 4.38 4.38 0 0 1 12 16.38zm6.97-11.4a1.58 1.58 0 1 0 1.58 1.57 1.58 1.58 0 0 0-1.58-1.57z"/></svg><span class="cap">その子だけの<br>学習プランづくり</span></a>
+      <a class="ig-card" href="https://www.instagram.com/kiminomanabi_otetsudai" target="_blank" rel="noopener" style="background:linear-gradient(135deg,#ffc24b,#ff7a4d)"><span class="emoji">🙌</span><svg class="ig-ico" viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.42a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.17-.42-.37-1.06-.42-2.23C2.2 15.58 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.42 2.2 8.8 2.2 12 2.2zm0 3.05A6.75 6.75 0 1 0 18.75 12 6.75 6.75 0 0 0 12 5.25zm0 11.13A4.38 4.38 0 1 1 16.38 12 4.38 4.38 0 0 1 12 16.38zm6.97-11.4a1.58 1.58 0 1 0 1.58 1.57 1.58 1.58 0 0 0-1.58-1.57z"/></svg><span class="cap">30分に1回の<br>あったか声かけ</span></a>
+      <a class="ig-card" href="https://www.instagram.com/kiminomanabi_otetsudai" target="_blank" rel="noopener" style="background:linear-gradient(135deg,#ff8fa3,#d62976)"><span class="emoji">🎓</span><svg class="ig-ico" viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.42a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.17-.42-.37-1.06-.42-2.23C2.2 15.58 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.42 2.2 8.8 2.2 12 2.2zm0 3.05A6.75 6.75 0 1 0 18.75 12 6.75 6.75 0 0 0 12 5.25zm0 11.13A4.38 4.38 0 1 1 16.38 12 4.38 4.38 0 0 1 12 16.38zm6.97-11.4a1.58 1.58 0 1 0 1.58 1.57 1.58 1.58 0 0 0-1.58-1.57z"/></svg><span class="cap">不登校から<br>志望校合格へ🌸</span></a>
+      <a class="ig-card" href="https://www.instagram.com/kiminomanabi_otetsudai" target="_blank" rel="noopener" style="background:linear-gradient(135deg,#7bd3cd,#36a8a0)"><span class="emoji">🐟</span><svg class="ig-ico" viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.42a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.17-.42-.37-1.06-.42-2.23C2.2 15.58 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.42 2.2 8.8 2.2 12 2.2zm0 3.05A6.75 6.75 0 1 0 18.75 12 6.75 6.75 0 0 0 12 5.25zm0 11.13A4.38 4.38 0 1 1 16.38 12 4.38 4.38 0 0 1 12 16.38zm6.97-11.4a1.58 1.58 0 1 0 1.58 1.57 1.58 1.58 0 0 0-1.58-1.57z"/></svg><span class="cap">代表せきたの<br>ちょっと一息☕</span></a>
+      <a class="ig-card" href="https://www.instagram.com/kiminomanabi_otetsudai" target="_blank" rel="noopener" style="background:linear-gradient(135deg,#962fbf,#4f5bd5)"><span class="emoji">💬</span><svg class="ig-ico" viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.42a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.17-.42-.37-1.06-.42-2.23C2.2 15.58 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.42 2.2 8.8 2.2 12 2.2zm0 3.05A6.75 6.75 0 1 0 18.75 12 6.75 6.75 0 0 0 12 5.25zm0 11.13A4.38 4.38 0 1 1 16.38 12 4.38 4.38 0 0 1 12 16.38zm6.97-11.4a1.58 1.58 0 1 0 1.58 1.57 1.58 1.58 0 0 0-1.58-1.57z"/></svg><span class="cap">保護者さまの声、<br>届いています💌</span></a>
+      <!-- set 2 (duplicate for seamless loop) -->
+      <a class="ig-card" href="https://www.instagram.com/kiminomanabi_otetsudai" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1" style="background:linear-gradient(135deg,#36a8a0,#1f7a73)"><span class="emoji">🌱</span><span class="cap">今日のがんばり、<br>「つなぐ」で報告📩</span></a>
+      <a class="ig-card" href="https://www.instagram.com/kiminomanabi_otetsudai" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1" style="background:linear-gradient(135deg,#ff9a6b,#ee5c2c)"><span class="emoji">✏️</span><span class="cap">その子だけの<br>学習プランづくり</span></a>
+      <a class="ig-card" href="https://www.instagram.com/kiminomanabi_otetsudai" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1" style="background:linear-gradient(135deg,#ffc24b,#ff7a4d)"><span class="emoji">🙌</span><span class="cap">30分に1回の<br>あったか声かけ</span></a>
+      <a class="ig-card" href="https://www.instagram.com/kiminomanabi_otetsudai" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1" style="background:linear-gradient(135deg,#ff8fa3,#d62976)"><span class="emoji">🎓</span><span class="cap">不登校から<br>志望校合格へ🌸</span></a>
+      <a class="ig-card" href="https://www.instagram.com/kiminomanabi_otetsudai" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1" style="background:linear-gradient(135deg,#7bd3cd,#36a8a0)"><span class="emoji">🐟</span><span class="cap">代表せきたの<br>ちょっと一息☕</span></a>
+      <a class="ig-card" href="https://www.instagram.com/kiminomanabi_otetsudai" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1" style="background:linear-gradient(135deg,#962fbf,#4f5bd5)"><span class="emoji">💬</span><span class="cap">保護者さまの声、<br>届いています💌</span></a>
+    </div>
+  </div>
+  <div class="wrap center" style="margin-top:32px">
+    <a class="btn ig lg" href="https://www.instagram.com/kiminomanabi_otetsudai" target="_blank" rel="noopener">
+      <svg class="line-ico" viewBox="0 0 24 24" style="fill:#fff"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.17.05 1.8.25 2.23.42.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.37 1.06.42 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.42 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.06.37-2.23.42-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.42a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.17-.42-.37-1.06-.42-2.23C2.2 15.58 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.42-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.06-.37 2.23-.42C8.42 2.2 8.8 2.2 12 2.2zm0 3.05A6.75 6.75 0 1 0 18.75 12 6.75 6.75 0 0 0 12 5.25zm0 11.13A4.38 4.38 0 1 1 16.38 12 4.38 4.38 0 0 1 12 16.38zm6.97-11.4a1.58 1.58 0 1 0 1.58 1.57 1.58 1.58 0 0 0-1.58-1.57z"/></svg>
+      Instagramをフォローする
+    </a>
+  </div>
+</section>
+
 <!-- FAQ -->
 <section id="faq">
   <div class="wrap">
@@ -500,7 +571,7 @@ footer{background:#2c2a27;color:#cfcabf;padding:48px 0 28px;font-size:13px}
         <input placeholder="お電話番号">
       </div>
       <button class="btn lg" style="width:100%;margin-top:18px;border:none;cursor:pointer;justify-content:center">この内容で無料体験を申し込む</button>
-      <p style="text-align:center;margin-top:14px;font-size:13px;color:var(--ink-soft)">フォームが面倒な方は <a href="https://lin.ee/XR2idcG" target="_blank" rel="noopener" style="color:var(--line-green);font-weight:700">LINEで相談</a> もどうぞ。</p>
+      <p style="text-align:center;margin-top:14px;font-size:13px;color:var(--ink-soft)">フォームが面倒な方は <a href="https://lin.ee/XR2idcG" target="_blank" rel="noopener" style="color:var(--line-green);font-weight:700">LINEで相談</a> もどうぞ。<br>メールでのお問い合わせは <a href="mailto:info@kyouiku-koubou.com" style="color:var(--brand-d);font-weight:700">info@kyouiku-koubou.com</a></p>
     </form>
   </div>
 </section>
@@ -514,6 +585,7 @@ footer{background:#2c2a27;color:#cfcabf;padding:48px 0 28px;font-size:13px}
         <div>不登校から受験合格まで</div>
         <div>小中学生専門オンライン学習塾</div>
         <div style="margin-top:10px;color:#fff;font-weight:700">0120-91-6374（10:00〜22:00）</div>
+        <div><a href="mailto:info@kyouiku-koubou.com">info@kyouiku-koubou.com</a></div>
       </div>
       <div class="fcol">
         <h4>メニュー</h4>
@@ -525,7 +597,7 @@ footer{background:#2c2a27;color:#cfcabf;padding:48px 0 28px;font-size:13px}
       <div class="fcol">
         <h4>つながる</h4>
         <div><a href="https://lin.ee/XR2idcG" target="_blank" rel="noopener">LINE公式アカウント</a></div>
-        <div><a href="#">Instagram</a></div>
+        <div><a href="https://www.instagram.com/kiminomanabi_otetsudai" target="_blank" rel="noopener">Instagram</a></div>
         <div><a href="#">運営会社</a></div>
         <div><a href="#">プライバシーポリシー</a></div>
       </div>
@@ -533,6 +605,14 @@ footer{background:#2c2a27;color:#cfcabf;padding:48px 0 28px;font-size:13px}
     <div class="copy">© 2026 きみのまなび おてつだい all rights reserved.</div>
   </div>
 </footer>
+
+<!-- DESKTOP FLOATING LINE -->
+<div class="line-float">
+  <span class="lbl">相談無料</span>
+  <a href="https://lin.ee/XR2idcG" target="_blank" rel="noopener" aria-label="LINEで相談する">
+    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 5.64 2 10.12c0 4.01 3.55 7.37 8.35 8.01.32.07.77.21.88.49.1.25.07.64.03.9l-.14.85c-.04.25-.2.99.87.54 1.07-.45 5.75-3.39 7.85-5.8C21.2 13.5 22 11.93 22 10.12 22 5.64 17.52 2 12 2z"/></svg>
+  </a>
+</div>
 
 <!-- MOBILE STICKY -->
 <div class="mobile-cta">
