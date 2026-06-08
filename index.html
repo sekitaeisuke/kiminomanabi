@@ -562,13 +562,12 @@ footer{background:#2c2a27;color:#cfcabf;padding:48px 0 28px;font-size:13px}
     <div class="kicker">CONTACT</div>
     <h2 class="h2">無料体験のお申し込み</h2>
     <p class="sub">30秒で入力完了。担当者より折り返しご連絡します。</p>
-    <form class="demo" action="https://formsubmit.co/info@kyouiku-koubou.com" method="POST">
-      <!-- FormSubmit 設定 -->
-      <input type="hidden" name="_subject" value="【きみのまなび】無料体験のお申し込み">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_autoresponse" value="お申し込みありがとうございます。担当者より折り返しご連絡いたします。（きみのまなび おてつだい）">
-      <input type="text" name="_honey" style="display:none">
+    <!-- 送信は Google Apps Script(自社GAS)経由でinfo@kyouiku-koubou.comへ。ページ遷移なし(隠しiframe)。 -->
+    <iframe name="km_sink" id="km_sink" style="display:none"></iframe>
+    <form class="demo" id="km_form"
+          action="https://script.google.com/macros/s/AKfycbzBN8QcDl75PN8w--bAXIuooH4iVN25imhceog_LvWooBlSv5RmfKVXJGw81Sp_Hn352g/exec"
+          method="POST" target="km_sink">
+      <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
       <p style="font-size:14px;color:var(--ink-soft);margin-bottom:18px">入力項目は最小限に。迷わせないほど、申込率は上がります。</p>
       <div style="display:grid;gap:12px">
         <input name="お名前" placeholder="保護者さまのお名前" required>
@@ -576,9 +575,34 @@ footer{background:#2c2a27;color:#cfcabf;padding:48px 0 28px;font-size:13px}
         <input type="email" name="メールアドレス" placeholder="メールアドレス" required>
         <input type="tel" name="お電話番号" placeholder="お電話番号" required>
       </div>
-      <button type="submit" class="btn lg" style="width:100%;margin-top:18px;border:none;cursor:pointer;justify-content:center">この内容で無料体験を申し込む</button>
+      <button type="submit" id="km_btn" class="btn lg" style="width:100%;margin-top:18px;border:none;cursor:pointer;justify-content:center">この内容で無料体験を申し込む</button>
       <p style="text-align:center;margin-top:14px;font-size:13px;color:var(--ink-soft)">フォームが面倒な方は <a href="https://lin.ee/XR2idcG" target="_blank" rel="noopener" style="color:var(--line-green);font-weight:700">LINEで相談</a> もどうぞ。<br>メールでのお問い合わせは <a href="mailto:info@kyouiku-koubou.com" style="color:var(--brand-d);font-weight:700">info@kyouiku-koubou.com</a></p>
     </form>
+    <div id="km_thanks" style="display:none;background:#fff;border:1px solid var(--line);border-radius:22px;padding:40px 28px;box-shadow:var(--shadow-sm);text-align:center">
+      <div style="font-size:46px;line-height:1">🌱</div>
+      <h3 style="font-family:'Zen Maru Gothic';color:var(--brand-d);font-size:22px;margin:12px 0 8px">お申し込みありがとうございます！</h3>
+      <p style="color:var(--ink-soft);font-size:15px;line-height:1.8">内容を確認のうえ、担当者より折り返しご連絡いたします。<br>お急ぎの方はお電話でもどうぞ → <b>0120-91-6374</b>（10:00〜22:00）</p>
+    </div>
+    <script>
+    (function(){
+      var f=document.getElementById('km_form'),
+          sink=document.getElementById('km_sink'),
+          btn=document.getElementById('km_btn'),
+          thanks=document.getElementById('km_thanks'),
+          sent=false;
+      f.addEventListener('submit',function(){
+        if(f._gotcha && f._gotcha.value){return;} // bot
+        sent=true;
+        btn.disabled=true; btn.textContent='送信中…';
+      });
+      sink.addEventListener('load',function(){
+        if(!sent)return;            // 初回ロードは無視
+        f.style.display='none';
+        thanks.style.display='block';
+        thanks.scrollIntoView({behavior:'smooth',block:'center'});
+      });
+    })();
+    </script>
   </div>
 </section>
 
