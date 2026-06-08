@@ -4,11 +4,14 @@
  * 役割: LP(kiminomanabi.online)のフォームから送られた内容を
  *       info@kyouiku-koubou.com にメール通知し、申込者には自動返信する。
  *
- * デプロイ手順:
- *   1. script.google.com で新規プロジェクトを作成し、このコードを貼り付け
- *   2. 「デプロイ」→「新しいデプロイ」→ 種類「ウェブアプリ」
- *   3. 「次のユーザーとして実行: 自分」/「アクセスできるユーザー: 全員」
- *   4. デプロイ → 承認 → 表示される ウェブアプリ URL (.../exec) をコピー
+ * 重要: フォームの項目名は英語(name/grade/email/tel)。日本語の項目名は
+ *       e.parameter で正しく受け取れないことがあるため英語キーにしている。
+ *
+ * 更新手順（コードを直したら必ず再デプロイ）:
+ *   1. コードを貼り替えて保存（💾）
+ *   2. 「デプロイ」→「デプロイを管理」→ 既存のデプロイの鉛筆✏️
+ *   3. バージョン:「新バージョン」を選択 →「デプロイ」
+ *      ※これで /exec のURLは変わらないまま中身が更新される
  */
 
 // 通知先（受け取りたいアドレス）
@@ -17,33 +20,39 @@ var NOTIFY_TO = 'info@kyouiku-koubou.com';
 function doPost(e) {
   try {
     var p = (e && e.parameter) ? e.parameter : {};
-    var name  = p['お名前']        || '(未入力)';
-    var grade = p['お子様の学年']  || '(未入力)';
-    var email = p['メールアドレス'] || '(未入力)';
-    var tel   = p['お電話番号']    || '(未入力)';
 
+    var name  = p.name  || '';
+    var grade = p.grade || '';
+    var email = p.email || '';
+    var tel   = p.tel   || '';
     var hasEmail = email && email.indexOf('@') > -1;
 
     // --- 管理者あて通知 ---
-    var body = [
+    var lines = [
       'きみのまなび おてつだい LP からお申し込みがありました。',
       '',
-      '■ お名前        : ' + name,
-      '■ お子様の学年  : ' + grade,
-      '■ メールアドレス: ' + email,
-      '■ お電話番号    : ' + tel,
-      '',
-      '受信日時: ' + new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' })
-    ].join('\n');
+      '■ お名前        : ' + (name  || '(未入力)'),
+      '■ お子様の学年  : ' + (grade || '(未入力)'),
+      '■ メールアドレス: ' + (email || '(未入力)'),
+      '■ お電話番号    : ' + (tel   || '(未入力)')
+    ];
+
+    // 念のため、想定外の項目も取りこぼさず記録
+    var known = ['name', 'grade', 'email', 'tel', '_gotcha'];
+    var extra = [];
+    for (var k in p) { if (known.indexOf(k) < 0) extra.push(k + ': ' + p[k]); }
+    if (extra.length) { lines.push('', '[その他受信データ]'); lines = lines.concat(extra); }
+
+    lines.push('', '受信日時: ' + new Date().toLocaleString('ja-JP', { timeZone: 'Asia/Tokyo' }));
 
     var opts = {};
     if (hasEmail) opts.replyTo = email; // 返信でそのまま申込者へ返せる
-    MailApp.sendEmail(NOTIFY_TO, '【きみのまなび】無料体験のお申し込み', body, opts);
+    MailApp.sendEmail(NOTIFY_TO, '【きみのまなび】無料体験のお申し込み', lines.join('\n'), opts);
 
     // --- 申込者あて自動返信 ---
     if (hasEmail) {
       var reply = [
-        name + ' 様',
+        (name || 'お申し込み者') + ' 様',
         '',
         'この度はお申し込みいただき、ありがとうございます。',
         '内容を確認のうえ、担当者より折り返しご連絡いたします。',
@@ -63,7 +72,6 @@ function doPost(e) {
       .setMimeType(ContentService.MimeType.JSON);
 
   } catch (err) {
-    // エラーでも申込を取りこぼさないよう、自分あてに控えを送る
     try {
       MailApp.sendEmail(NOTIFY_TO, '【きみのまなび】フォーム受信エラー', String(err) + '\n\n' + JSON.stringify((e && e.parameter) || {}));
     } catch (e2) {}
