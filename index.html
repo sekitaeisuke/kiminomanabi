@@ -562,15 +562,21 @@ footer{background:#2c2a27;color:#cfcabf;padding:48px 0 28px;font-size:13px}
     <div class="kicker">CONTACT</div>
     <h2 class="h2">無料体験のお申し込み</h2>
     <p class="sub">30秒で入力完了。担当者より折り返しご連絡します。</p>
-    <form class="demo" onsubmit="alert('※これはデザイン見本です。STUDIOのフォームに置き換えてください。');return false">
+    <form class="demo" action="https://formsubmit.co/info@kyouiku-koubou.com" method="POST">
+      <!-- FormSubmit 設定 -->
+      <input type="hidden" name="_subject" value="【きみのまなび】無料体験のお申し込み">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_autoresponse" value="お申し込みありがとうございます。担当者より折り返しご連絡いたします。（きみのまなび おてつだい）">
+      <input type="text" name="_honey" style="display:none">
       <p style="font-size:14px;color:var(--ink-soft);margin-bottom:18px">入力項目は最小限に。迷わせないほど、申込率は上がります。</p>
       <div style="display:grid;gap:12px">
-        <input placeholder="保護者さまのお名前">
-        <select><option>お子様の学年を選択</option><option>小学1〜3年生</option><option>小学4〜6年生</option><option>中学生</option></select>
-        <input placeholder="メールアドレス">
-        <input placeholder="お電話番号">
+        <input name="お名前" placeholder="保護者さまのお名前" required>
+        <select name="お子様の学年" required><option value="">お子様の学年を選択</option><option>小学1〜3年生</option><option>小学4〜6年生</option><option>中学生</option></select>
+        <input type="email" name="メールアドレス" placeholder="メールアドレス" required>
+        <input type="tel" name="お電話番号" placeholder="お電話番号" required>
       </div>
-      <button class="btn lg" style="width:100%;margin-top:18px;border:none;cursor:pointer;justify-content:center">この内容で無料体験を申し込む</button>
+      <button type="submit" class="btn lg" style="width:100%;margin-top:18px;border:none;cursor:pointer;justify-content:center">この内容で無料体験を申し込む</button>
       <p style="text-align:center;margin-top:14px;font-size:13px;color:var(--ink-soft)">フォームが面倒な方は <a href="https://lin.ee/XR2idcG" target="_blank" rel="noopener" style="color:var(--line-green);font-weight:700">LINEで相談</a> もどうぞ。<br>メールでのお問い合わせは <a href="mailto:info@kyouiku-koubou.com" style="color:var(--brand-d);font-weight:700">info@kyouiku-koubou.com</a></p>
     </form>
   </div>
